@@ -1,5 +1,5 @@
 
-mpactRange>
+<compactRange>
 
 - [begin,end] : 해당 범위 만큼 compaction이 storage에서 일어난다.
 
@@ -26,3 +26,18 @@ mpactRange>
 	- options.target_lavel : 특정 레벨 지정가능 
 
 	- options.target_patt_id
+
+
+
+
+<CompactFiles>
+
+	- input: list of files ( specified by file number)
+
+	- files를 특정 level로 compact한다. 
+
+	- compactRange()와의 차이점: compaction job을 current thread를 이용해서 수행한다.
+
+
+
+	** 참고부분 : GetDataBaseMetaData   &  GetColumnFamilyMetaData
