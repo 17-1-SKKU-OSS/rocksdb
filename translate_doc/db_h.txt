@@ -1,0 +1,28 @@
+
+mpactRange>
+
+- [begin,end] : 해당 범위 만큼 compaction이 storage에서 일어난다.
+
+- 실제 compaction interval이 begin, end의 범위보다 넓을 수 있다 
+
+- delete/ overwritten 된 것들은 모두 버려지고 해당 부분의 data는 다시 재 정렬 됨 -> 데이터에 접근할 때 필요한 operation의 cost를 줄기 위해
+
+- 이 operation은 오직 user에 의해서만 불려짐 
+
+
+
+-> db->CompactRange(options, nullptr, nullptr)
+
+	: 전체 database를 compact 함
+
+	: 이렇게 모든 데이터를 compact하면, 모든 데이터는 가장 마지막 레벨로 내려감
+
+	: 만약 전체 데이터 크기가 줄어들면, 해당 level이 모든 file을 가지고 있기에 부적절할 수도 있는데 이때는 client가 <options.change_level> = true 로 해서 file들을 다시 데이터 holding이 가능한 최소 level(또는 given leve)로 돌려 보낸다.
+
+
+
+	- options.change_level : true/false
+
+	- options.target_lavel : 특정 레벨 지정가능 
+
+	- options.target_patt_id
