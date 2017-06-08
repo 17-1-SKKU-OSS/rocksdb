@@ -55,9 +55,9 @@ if (!s.ok()) cerr << s.ToString() << endl;
 delete db;
 ```
 
-## Reads And Writes
+## 읽기&쓰기
 
-The database provides Put, Delete, and Get methods to modify/query the database. For example, the following code moves the value stored under `key1` to `key2`.
+수정/조회를 위해, Put, Delete, 그리고 Get 방식을 지원합니다. 다음 예제는 `key1`의 값을 `key2`로 옮깁니다.
 
 ```c++
 std::string value;
@@ -66,12 +66,13 @@ if (s.ok()) s = db->Put(rocksdb::WriteOptions(), key2, value);
 if (s.ok()) s = db->Delete(rocksdb::WriteOptions(), key1);
 ```
 
-## Further documentation
+## 추가 정보
 
-These are just simple examples of how RocksDB is used. The full documentation is currently on the [GitHub wiki](https://github.com/facebook/rocksdb/wiki).
+이 문서는 RocksDB사용을 위한 간단한 예제만을 포함하고 있습니다. 전체 문서는 [GitHub wiki](https://github.com/facebook/rocksdb/wiki)에서 읽어 볼 수 있습니다.
 
-Here are some specific details about the RocksDB implementation:
+다음은 RocksDB 구현에 대한 몇 가지 구체적인 내용입니다.:
 
 - [Architecture Guide](https://github.com/facebook/rocksdb/wiki/Rocksdb-Architecture-Guide)
 - [Format of an immutable Table file](https://github.com/facebook/rocksdb/wiki/Rocksdb-Table-Format)
 - [Format of a log file](https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log-File-Format)
+
