@@ -38,8 +38,7 @@ options.error_if_exists = true;
 
 ## 상태
 
-You may have noticed the `rocksdb::Status` type above. Values of this type are returned by most functions in RocksDB that may encounter
-an error. You can check if such a result is ok, and also print an associated error message:
+위의 코드에서 `rocksdb :: Status` 타입을 보셨을 것입니다. 이 타입의 값은 오류가 발생할 수있는 RocksDB 대부분의 함수에서 반환됩니다. 반환 값을 통해 해당 결과가 정상인지 확인하고 관련 오류 메시지를 출력 할 수 있습니다.:
 
 ```c++
 rocksdb::Status s = ...;
