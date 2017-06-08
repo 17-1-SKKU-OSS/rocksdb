@@ -45,9 +45,9 @@ rocksdb::Status s = ...;
 if (!s.ok()) cerr << s.ToString() << endl;
 ```
 
-## Closing A Database
+## 데이터베이스 닫기
 
-When you are done with a database, just delete the database object. For example:
+데이터베이스 작업이 끝났다면, 다음처럼 데이터베이스 객체를 지워주기만 하면 됩니다.:
 
 ```c++
 /* open the db as described above */
