@@ -11,18 +11,16 @@ RocksDB 관련 자주 묻는 질문에 대한 답변입니다.
 
 RocksDB는 빠른 저장을 위한 임베디드 영구 key-value 저장소입니다. RocksDB는 클라이언트-서버 데이터베이스의 기반으로 사용될 수도 있지만, 현재는 임베디드 작업환경에 초점을 두고 있습니다.
 
-RocksDB builds on [LevelDB](https://code.google.com/p/leveldb/) to be scalable to run on servers with many CPU cores, to efficiently use fast storage, to support IO-bound, in-memory and write-once workloads, and to be flexible to allow for innovation.
-
-
 RocksDB는 [LevelDB](https://code.google.com/p/leveldb/)를 기반으로하여 많은 CPU 코어가있는 서버에서 실행되도록 확장 가능하며, 빠른 스토리지를 효율적으로 사용할 수 있고, IO 바인딩 지원, in-memory and write-once workloads를 지원하고 혁신을 가능하게하는 유연성을 제공합니다.
 
-최신 정보를 보시려면, [Mark Callaghan’s and Igor Canadi’s talk at CMU on 10/2015](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f4e0eb37-ae18-468f-9248-cb73edad3e56)를 참고하세요. Data @ Scale 2013 conference에서 진행된 [Dhruba Borthakur’s introductory talk](https://github.com/facebook/rocksdb/blob/gh-pages/intro.pdf?raw=true)에서는 RocksDB가 어떻게 진화했는지에 대해 들을 수 있습니다.
+최신 정보를 보시려면, [Mark Callaghan’s and Igor Canadi’s talk at CMU on 10/2015](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f4e0eb37-ae18-468f-9248-cb73edad3e56)를 참고하세요. Data @ Scale 2013 conference에서 진행된 [Dhruba Borthakur’s introductory talk](https://github.com/facebook/rocksdb/blob/gh-pages/intro.pdf?raw=true)에서는 RocksDB가 어떻게 진화했는지에 대해 확인할 수 있습니다.
 
-## How does performance compare?
+## 성능비교는 어떤가요?
 
-We benchmarked LevelDB and found that it was unsuitable for our server workloads. The [benchmark results](http://leveldb.googlecode.com/svn/trunk/doc/benchmark.html) look awesome at first sight, but we quickly realized that those results were for a database whose size was smaller than the size of RAM on the test machine – where the entire database could fit in the OS page cache. When we performed the same benchmarks on a database that was at least 5 times larger than main memory, the performance results were dismal.
+우리는 LevelDB의 성능 측정을 해보고 LevelDB가 우리의 서버 워크로드에는 적합하지 않다고 판단했습니다. LevelDB의 [benchmark results](http://leveldb.googlecode.com/svn/trunk/doc/benchmark.html)는 처음 보았을 때에는 멋지지만, 우리는 곧 그 결과가 테스트 머신의 RAM 크기보다 작은 사이즈의 데이터베이스에 대한 것이란 걸 깨달았습니다. – 전체 데이터베이스가 OS페이지 캐시에 모두 들어갈 수 있을 경우 말입니다. 메인 메모리보다 5배 이상 큰 데이터베이스에서 동일한 벤치 마크를 수행했을 때의 결과는 좋지 않았습니다.
 
-By contrast, we’ve published the [RocksDB benchmark results](https://github.com/facebook/rocksdb/wiki/Performance-Benchmarks) for server side workloads on Flash. We also measured the performance of LevelDB on these server-workload benchmarks and found that RocksDB solidly outperforms LevelDB for these IO bound workloads. We found that LevelDB’s single-threaded compaction process was insufficient to drive server workloads. We saw frequent write-stalls with LevelDB that caused 99-percentile latency to be tremendously large. We found that mmap-ing a file into the OS cache introduced performance bottlenecks for reads. We could not make LevelDB consume all the IOs offered by the underlying Flash storage.
+이와 대조적으로, 우리는 Flash의 서버 워크로드에 대한 [RocksDB benchmark results](https://github.com/facebook/rocksdb/wiki/Performance-Benchmarks)를 게시했습니다. 우리는 LevelDB에도 이와 같은 서버 워크로드에 대해 벤치마크를 돌려 성능을 측정했고, RockDB는 이러한 IO 바인딩 워크로드에 대해 LevelDB보다 견고한 성능을 나타낸다는 것을 발견했습니다. 우리는 LevelDB의 단일 스레드 압축 프로세스가 서버 워크로드를 구동하기에 부족하다는 것을 알았습니다. LevelDB에서의 빈번한 write-stall는 P99 지연시간을 엄청나게 증가시킨 다는 것을 확인했습니다. 또한 OS 캐시에 파일을 mmaping하면 읽기에 대한 병목 현상이 발생한다는 것을 확인했습니다. 우리는 LevelDB가 기본 플래시 스토리지에서 제공하는 모든 IO를 낭비해버리도록 할 수 없습니다.
+
 
 ## What is RocksDB suitable for?
 
