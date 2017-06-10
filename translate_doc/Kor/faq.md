@@ -22,15 +22,15 @@ RocksDB는 [LevelDB](https://code.google.com/p/leveldb/)를 기반으로하여 �
 이와 대조적으로, 우리는 Flash의 서버 워크로드에 대한 [RocksDB benchmark results](https://github.com/facebook/rocksdb/wiki/Performance-Benchmarks)를 게시했습니다. 우리는 LevelDB에도 이와 같은 서버 워크로드에 대해 벤치마크를 돌려 성능을 측정했고, RockDB는 이러한 IO 바인딩 워크로드에 대해 LevelDB보다 견고한 성능을 나타낸다는 것을 발견했습니다. 우리는 LevelDB의 단일 스레드 압축 프로세스가 서버 워크로드를 구동하기에 부족하다는 것을 알았습니다. LevelDB에서의 빈번한 write-stall는 P99 지연시간을 엄청나게 증가시킨 다는 것을 확인했습니다. 또한 OS 캐시에 파일을 mmaping하면 읽기에 대한 병목 현상이 발생한다는 것을 확인했습니다. 우리는 LevelDB가 기본 플래시 스토리지에서 제공하는 모든 IO를 낭비해버리도록 할 수 없습니다.
 
 
-## What is RocksDB suitable for?
+## RocksDB는 어디에 사용하는 것이 좋을까요?
 
-RocksDB can be used by applications that need low latency database accesses. Possibilities include:
+RocksDB는 다음 예시와 같이 지연이 적은 데이터베이스 액세스가 필요한 응용프로그램에서 사용할 수 있습니다.:
 
-* A user-facing application that stores the viewing history and state of users of a website.
-* A spam detection application that needs fast access to big data sets.
-* A graph-search query that needs to scan a data set in realtime.
-* A cache data from Hadoop, thereby allowing applications to query Hadoop data in realtime.
-* A message-queue that supports a high number of inserts and deletes.
+* 웹사이트 사용자의 히스토리 및 상태를 저장하는 프로그램.
+* 거대한 데이터 셋에 빠르게 액세스해야하는 스팸 탐지 프로그램.
+* 실시간으로 데이터셋을 스캔해야하는 그래프 검색 쿼리.
+* Hadoop의 캐시 데이터.이를 통해 응용프로그램은 실시간으로 Hadoop 데이터에 쿼리를 실행할 수 있습니다.
+* 많은 수의 삽입/삭제를 지원하는 메시지 큐.
 
 ## How big is RocksDB adoption?
 
