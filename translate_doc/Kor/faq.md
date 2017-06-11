@@ -32,11 +32,13 @@ RocksDB는 다음 예시와 같이 지연이 적은 데이터베이스 액세스
 * Hadoop의 캐시 데이터.이를 통해 응용프로그램은 실시간으로 Hadoop 데이터에 쿼리를 실행할 수 있습니다.
 * 많은 수의 삽입/삭제를 지원하는 메시지 큐.
 
-## How big is RocksDB adoption?
+## RocksDB의 채택 규모는 어떤가요?
 
-RocksDB is an embedded storage engine that is used in a number of backend systems at Facebook. In the Facebook newsfeed’s backend, it replaced another internal storage engine called Centrifuge and is one of the many components used. ZippyDB, a distributed key value store service used by Facebook products relies RocksDB. Details on ZippyDB are in [Muthu Annamalai’s talk at Data@Scale in Seattle](https://youtu.be/DfiN7pG0D0k). Dragon, a distributed graph query engine part of the social graph infrastructure, is using RocksDB to store data. Parse has been running [MongoDB on RocksDB in production](http://blog.parse.com/announcements/mongodb-rocksdb-parse/) since early 2015.
+RocksDB는 페이스북의 여러 백엔드 시스템에서 사용되는 임베디드 스토리지 엔진입니다. 페이스북 뉴스피드의 백엔드에서는 RocksDB가 Centrifuge라는 다른 스토리지 엔진을 대체했으며, 페이스북 제품에서 사용하는 분산 키-값 저장소 서비스인 ZippyDB는 RocksDB에 의존성을 두고 있습니다. ZippyDB에 대한 더 자세한 정보는 [Muthu Annamalai’s talk at Data@Scale in Seattle](https://youtu.be/DfiN7pG0D0k)을 참고하세요. 소셜 그래프 인프라의 분산 그래프 쿼리 엔진인 Dragon은 RocksDB를 사용하여 데이터를 저장합니다. Parse는 2015년 초부터 RocksDB를 사용해 동작하고 있습니다-[MongoDB on RocksDB in production](http://blog.parse.com/announcements/mongodb-rocksdb-parse/).
 
 RocksDB is proving to be a useful component for a lot of other groups in the industry. For a list of projects currently using RocksDB, take a look at our USERS.md list on github.
+
+RocksDB는 업계의 많은 그룹에 유용한 구성요소임이 입증되었습니다. 현재 RocksDB를 사용하는 프로젝트 목록을 보려면 github에있는 USERS.md 파일을 살펴보십시오.
 
 ## How good is RocksDB as a database storage engine?
 
