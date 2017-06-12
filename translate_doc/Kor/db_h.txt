@@ -53,4 +53,12 @@
 - 자동 compaction 실행 - 특정 column family의 컴팩션이 이전에 disable되어 있었으면 enable하게 하는 것
 
 
+()>
 
+-defalut/특정 column family의 DB에서 사용한 number of levels
+
+
+
+<MaxMemCompactionLevel()>
+
+-새로 compact 된 memtable이 최대로 push될 수 있는 maximum level(overlap이 생성되지 않는 곳까지)
