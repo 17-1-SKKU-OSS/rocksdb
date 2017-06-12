@@ -1,10 +1,3 @@
----
-docid: getting-started
-title: Getting started
-layout: docs
-permalink: /docs/getting-started.html
----
-
 ## 개요
 
 RocksDB 라이브러리는 키-값 형식의 데이터 저장소를 제공합니다. 키와 값은 바이트 배열 형식이며, 키들은 사용자가 지정한 비교 함수에 따라 정렬되어 저장됩니다.

@@ -1,10 +1,3 @@
----
-docid: support-faq
-title: FAQ
-layout: docs
-permalink: /docs/support/faq.html
----
-
 RocksDB 관련 자주 묻는 질문에 대한 답변입니다.
 
 ## RocksDB가 무엇인가요?
