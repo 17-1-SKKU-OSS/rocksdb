@@ -47,3 +47,10 @@
 - 현재 돌고 있는 모든 백그라운드 프로세스가 끝날때까지 기다림.
 
 - 이게 리턴되면, 백그라운드 프로세스는 unblockbackgroundwork()가 불릴때까지 실행되지 않음.
+
+<EnableAutoCompaction()>
+
+- 자동 compaction 실행 - 특정 column family의 컴팩션이 이전에 disable되어 있었으면 enable하게 하는 것
+
+
+
